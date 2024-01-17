@@ -1,5 +1,6 @@
 import express from "express";
 import cors from "cors";
+import router from "./routes";
 import { configurePassport } from "./middlewares/passport";
 
 const isProduction = process.env.NODE_ENV === "production";
@@ -19,9 +20,7 @@ if (isProduction) {
 app.use(express.json());
 
 // all our api routes
-app.get("/api/hello", (req, res) => {
-    res.json({ message: "World" });
-});
+app.use(router);
 
 // 404 fallback for client side routing
 if (isProduction) {

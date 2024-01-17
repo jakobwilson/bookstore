@@ -14,11 +14,8 @@ export interface Book {
 
 export interface User extends NewUser {
     id: number;
-    email: string;
-    password: string;
     role: string;
     _created: string;
-    name: string;
 }
 
 export interface NewUser {

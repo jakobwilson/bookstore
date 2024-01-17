@@ -3,6 +3,8 @@ import LocalStrategy from "passport-local";
 import JwtStrategy from "passport-jwt";
 import { Express } from "express";
 import config from "../config";
+import database from "../database";
+import { compare } from "bcrypt";
 
 export const configurePassport = (app: Express) => {
     passport.use(
@@ -10,12 +12,25 @@ export const configurePassport = (app: Express) => {
             {
                 usernameField: "email",
             },
-            (email, password, done) => {
-                // DB lookup user by email
-                // check if they exist
-                // if user exists, use bcrypt to check pw match
-                // if so, delete user.password && done(null, user);
-                // else done("No user lmao", false);
+            async (email, password, done) => {
+               try {
+                const[user] = await database.users.getOne(email);
+                if(!user) {
+                    console.log('no user')
+                    return done('Invalid login', false);
+                }
+
+                const checkMatch = compare(password, user.password);
+                if (!checkMatch) {
+                    console.log('wrong password')
+                    return done('Invalid login.');
+                }
+                done(null, user);
+
+               } catch (error) {
+                console.log(error)
+                done(error, false);
+               }
             }
         )
     );

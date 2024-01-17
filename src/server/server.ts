@@ -16,6 +16,8 @@ if (isProduction) {
     app.use(express.static("public"));
 }
 
+app.use(express.json());
+
 // all our api routes
 app.get("/api/hello", (req, res) => {
     res.json({ message: "World" });

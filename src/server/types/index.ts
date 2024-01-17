@@ -12,12 +12,18 @@ export interface Book {
     _created: string;
 }
 
-export interface User {
+export interface User extends NewUser {
     id: number;
     email: string;
     password: string;
     role: string;
     _created: string;
+    name: string;
+}
+
+export interface NewUser {
+    email: string;
+    password: string;
     name: string;
 }
 

@@ -4,7 +4,8 @@ import JwtStrategy from "passport-jwt";
 import { Express } from "express";
 import config from "../config";
 import database from "../database";
-import { compare } from "bcrypt";
+import { compare } from '../utils/bcrypt';
+
 
 export const configurePassport = (app: Express) => {
     passport.use(
@@ -13,24 +14,23 @@ export const configurePassport = (app: Express) => {
                 usernameField: "email",
             },
             async (email, password, done) => {
-               try {
-                const[user] = await database.users.getOne(email);
-                if(!user) {
-                    console.log('no user')
-                    return done('Invalid login', false);
-                }
+                try {
+                    const [user] = await database.users.getOne(email);
+                    if(!user) { 
+                        console.log('user doesnt exist')
+                        return done('Invalid login', false);
 
-                const checkMatch = compare(password, user.password);
-                if (!checkMatch) {
-                    console.log('wrong password')
-                    return done('Invalid login.');
+                    }
+                    const isAMatch = compare(password, user.password);
+                    if (!isAMatch) {
+                        console.log('user password doesnt match')
+                        return done ('Invalid login.', false);
+                    }
+                    done( null, user);
+                } catch (error) {
+                    console.log(error)
+                    done(error, false);
                 }
-                done(null, user);
-
-               } catch (error) {
-                console.log(error)
-                done(error, false);
-               }
             }
         )
     );
@@ -49,3 +49,5 @@ export const configurePassport = (app: Express) => {
 
     app.use(passport.initialize());
 };
+
+

@@ -7,13 +7,9 @@ export const tokenCheck: RequestHandler = (req, res, next) => {
         if (err) {
             return res.status(401).json({ message: "Banned lol", err });
         }
-
-        if (info) {
-            return res.status(401).json({ message: "Banned lol", info });
-        }
-
+        
         if (!user) {
-            return res.status(401).json({ message: "Must be logged in" });
+            return res.status(401).json({ message: "Must be logged in", info });
         }
 
         req.user = user;

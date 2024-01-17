@@ -12,6 +12,7 @@ export interface Book {
     _created: string;
 }
 
+
 export interface User extends NewUser {
     id: number;
     role: string;
@@ -27,7 +28,6 @@ export interface NewUser {
 export interface Payload {
     id: number;
     name: string;
-    role: string;
 }
 
 declare global {

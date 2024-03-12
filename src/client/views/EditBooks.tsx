@@ -50,11 +50,11 @@ const Edit = () => {
         <div className="col-12 col-9">
             <div className="shadow-lg m-2 p-3 rounded-3">
             <label>Title:</label>
-            <input className='form-control' value={title} onChange={e => setTitle(e.target.value)} />
+            <input className='Tplaceholder form-control' value={title} onChange={e => setTitle(e.target.value)} />
             <label>Author:</label>
-            <input className='form-control' value={author} onChange={e => setAuthor(e.target.value)} />
+            <input className='Aplaceholder form-control' value={author} onChange={e => setAuthor(e.target.value)} />
             <label>Price:</label>
-            <input className='form-control' value={price} type= "number" onChange={e => setPrice(Number(e.target.value))} />
+            <input className='Pplaceholder form-control' value={price} type= "number" onChange={e => setPrice(Number(e.target.value))} />
             <select className='btn mt-2' value={categoryid} onChange={(e) => setCategoryid(Number(e.target.value))}> 
             <option value={0}>Choose a category</option>
             {categories.map(cat => (<option value={cat.id} key={`cat-option-${cat.id}`}> {cat.name} </option>))}

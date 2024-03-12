@@ -21,9 +21,9 @@ const BookDetails = () => {
           <div className="col-12 col-md-9" key={`book-card-${book.id}`}>
             <h1 className="display-1 text-center">Book Details</h1>
             <div className="card shadow-lg p-3 m-2">
-              <h1>{book.title}</h1>
-              <h2>{book.author}</h2>
-              <p>${book.price}</p>
+              <h1 className="booktitle">{book.title}</h1>
+              <h2 className="bookauthor">{book.author}</h2>
+              <p className="bookprice">${book.price}</p>
               <Link className="btn m-2" to={`/books/${book.id}/edit`}>Edit</Link>
               <Link className="btn m-2" to='/'>Back</Link>
             </div>

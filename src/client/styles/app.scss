@@ -1,7 +1,7 @@
 // Vaporwave Color Scheme
 
 // Colors
-$body-bg: #0091ea;        // Bright Blue
+$body-bg: #b9bcc1;        // Bright Blue
 $primary: #ff6ad5;        // Neon Pink
 $secondary: #ffdb58;      // Bright Yellow
 $success: #00f764;        // Neon Green
@@ -17,6 +17,8 @@ $link-hover-color: darken($link-color, 10%);
 
 // Bootstrap Import
 @import '~bootstrap/scss/bootstrap.scss';
+
+
 
 .navbar {
 	display: flex;
@@ -48,3 +50,35 @@ $link-hover-color: darken($link-color, 10%);
 .navbar .btn {
 	margin: 10px; 
   }
+
+.card {
+	background: #404c5e;
+}
+
+h1 {
+	color: #EEE;
+}
+
+h2 {
+	color: #EEE;
+}
+
+p {
+	color: #EEE;
+}
+
+label {
+	color: #eee;
+}
+
+.Tplaceholder {
+	color: #eee;
+}
+
+.Aplaceholder {
+	color: #eee;
+}
+
+.Pplaceholder {
+	color: #eee;
+}
